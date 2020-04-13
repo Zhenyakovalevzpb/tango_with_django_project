@@ -1,5 +1,6 @@
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','tango_with_django_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                      'tango_with_django_project.settings')
 
 
 import django
@@ -26,14 +27,15 @@ def populate():
          "url": "http://bottlepy.org/docs/dev/"},
         {"title": "Flask",
          "url": "http://flask.pocoo.org"}]
+
     cats = {"Python": {"pages": python_pages},
             "Django": {"pages": django_pages},
             "Other Frameworks": {"pages": other_pages}}
 
     for cat, cat_data in cats.items():
         c = add_cat(cat)
-    for p in cat_data["pages"]:
-        add_page(c, p["title"], p["url"])
+        for p in cat_data["pages"]:
+            add_page(c, p["title"], p["url"])
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
@@ -41,8 +43,8 @@ def populate():
 
 def add_page(cat, title, url, views=0):
     p = Page.objects.get_or_create(category=cat, title=title)[0]
-    p.url = url
-    p.views = views
+    p.url=url
+    p.views=views
     p.save()
     return p
 
