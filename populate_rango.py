@@ -1,8 +1,6 @@
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'tango_with_django_project.settings')
-
-
 import django
 django.setup()
 from rango.models import Category, Page
@@ -28,9 +26,9 @@ def populate():
         {"title": "Flask",
          "url": "http://flask.pocoo.org"}]
 
-    cats = {"Python": {"pages": python_pages},
-            "Django": {"pages": django_pages},
-            "Other Frameworks": {"pages": other_pages}}
+    cats = {"Python": {"pages": python_pages, "likes":128, "views": 64},
+            "Django": {"pages": django_pages, "likes":64, "views": 32},
+            "Other Frameworks": {"pages": other_pages, "likes":32, "views": 16}}
 
     for cat, cat_data in cats.items():
         c = add_cat(cat)
@@ -43,13 +41,16 @@ def populate():
 
 def add_page(cat, title, url, views=0):
     p = Page.objects.get_or_create(category=cat, title=title)[0]
-    p.url=url
-    p.views=views
+    p.url = url
+    p.views = views
     p.save()
     return p
 
-def add_cat(name):
+
+def add_cat(name, views=0, likes=0):
     c = Category.objects.get_or_create(name=name)[0]
+    c.views = views
+    c.likes = likes
     c.save()
     return c
 
