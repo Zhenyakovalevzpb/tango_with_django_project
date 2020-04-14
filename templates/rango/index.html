@@ -13,6 +13,7 @@
     </div>
     <div>
         {% if categories %}
+        <h2><b>Most Liked Categories</b></h2>
         <ul>
             {% for category in categories %}
             <li>
@@ -24,6 +25,36 @@
         <strong>There are no categories present.</strong>
         {% endif %}
     </div>
+    <div>
+        {% if pages %}
+        <h2><b>Most Vieved Pages</b></h2>
+            <ul>
+            {% for page in pages %}
+            <li>
+                <a href="{{ page.url }}">{{ page.title }}</a>
+            </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No pages currently in category</strong>
+        {% endif %}
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div>
         <a href="/rango/about/">About Rango</a><br>
