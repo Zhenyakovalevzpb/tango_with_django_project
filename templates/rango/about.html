@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-{% load static %}
 
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>About</title>
-    </head>
-    <body>
+{% extends 'rango/base.html' %}
+{% load static %}
+    {% block title_block %}
+        Rango
+    {% endblock %}
+    {% block body_block %}
         <h1>This is what the application about</h1>
         <div>
             This tutorial has been put together by Zhenya
         </div>
         <div>
-            <a href="/rango/">Index page</a><br />
             <img src="{{ MEDIA_URL}}cat.jpg" />
         </div>
-    </body>
+    {% endblock %}
 </html>
