@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm
+from rango.models import Category, Page
 
 
 def index(request):
@@ -38,6 +38,7 @@ def add_category(request):
             print(form.errors)
     return render(request, 'rango/add_category.html', {'form': form})
 
+
 def add_page(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
@@ -58,12 +59,12 @@ def add_page(request, category_name_slug):
         else:
             print(form.errors)
 
-    context_dict = {'form':form, 'category': category}
+    context_dict = {'form': form, 'category': category}
 
     return render(request, 'rango/add_page.html', context_dict)
 
 
 def about(request):
-    return render(request, 'rango/about.html', )
-
-
+    print(request.method)
+    print(request.user)
+    return render(request, 'rango/about.html', {})
