@@ -29,19 +29,21 @@
             {% endif %}
         </div>
         <div>
-            <a href="/rango/add_category/">Add a New Category</a><br>
-            {% if pages %}
-            <h2><b>Most Vieved Pages</b></h2>
-                <ul>
-                {% for page in pages %}
-                <li>
-                    <a href="{{ page.url }}">{{ page.title }}</a>
-                </li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <strong>No pages currently in category</strong>
+            {% if user.is_authenticated %}
+                <a href="/rango/add_category/">Add a New Category</a><br>
             {% endif %}
+                {% if pages %}
+                <h2><b>Most Vieved Pages</b></h2>
+                    <ul>
+                    {% for page in pages %}
+                    <li>
+                        <a href="{{ page.url }}">{{ page.title }}</a>
+                    </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <strong>No pages currently in category</strong>
+                {% endif %}
         </div>
         <div>
             <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango">
